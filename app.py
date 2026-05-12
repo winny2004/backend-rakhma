@@ -4,6 +4,8 @@ import joblib
 import numpy as np
 import pandas as pd
 import json
+import os
+
 
 app = Flask(__name__)
 CORS(app)
@@ -11,10 +13,12 @@ CORS(app)
 # =========================
 # LOAD MODEL
 # =========================
-model_path = 'models/model_svm.pkl'
-scaler_path = 'models/scaler.pkl'
-encoder_path = 'models/label_encoder.pkl'
-feature_path = 'models/feature_cols.pkl'
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+model_path = os.path.join(BASE_DIR, 'models/model_svm.pkl')
+scaler_path = os.path.join(BASE_DIR, 'models/scaler.pkl')
+encoder_path = os.path.join(BASE_DIR, 'models/label_encoder.pkl')
+feature_path = os.path.join(BASE_DIR, 'models/feature_cols.pkl')
 
 try:
     model = joblib.load(model_path)
